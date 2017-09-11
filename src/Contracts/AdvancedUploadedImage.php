@@ -2,6 +2,8 @@
 
 namespace Vinter\UploadedImage\Contracts;
 
+use Vinter\UploadedImage\UploadedImage;
+
 interface AdvancedUploadedImage
 {
     /**
