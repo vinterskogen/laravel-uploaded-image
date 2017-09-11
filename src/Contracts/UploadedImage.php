@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinter\UploadedImage\Contracts;
+namespace Vinterskogen\UploadedImage\Contracts;
 
 interface UploadedImage
 {
@@ -92,7 +92,7 @@ interface UploadedImage
     /**
      * Get AdvancedUploadedImage instance for advanced editing.
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public function advancedEditing();
 }

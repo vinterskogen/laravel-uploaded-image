@@ -1,27 +1,27 @@
 <?php
 
-namespace Vinter\UploadedImage;
+namespace Vinterskogen\UploadedImage;
 
 use Exception;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\AbstractDriver;
 use Intervention\Image\Image as InterventionImage;
 use Intervention\Image\Exception\NotSupportedException;
-use Vinter\UploadedImage\Contracts\AdvancedUploadedImage as AdvancedUploadedImageContract;
+use Vinterskogen\UploadedImage\Contracts\AdvancedUploadedImage as AdvancedUploadedImageContract;
 
 class AdvancedUploadedImage extends InterventionImage implements AdvancedUploadedImageContract
 {
     /**
      * The uploaded image instance.
      *
-     * @var Vinter\UploadedImage\UploadedImage
+     * @var \Vinterskogen\UploadedImage\UploadedImage
      */
     protected $uploadedImage;
 
     /**
      * Creates a new image instance.
      *
-     * @param \Vinter\UploadedImage\UploadedImage $uploadedImage
+     * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
      * @param \Intervention\Image\AbstractDriver  $driver
      * @param mixed                               $core
      */
@@ -36,7 +36,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Save the applied changed to (real) temporary file and return
      * UploadedImage instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function simpleEditing()
     {
@@ -49,7 +49,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Do not save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function doNotSaveAndSimpleEditing()
     {
@@ -60,7 +60,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Don't save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function dontSaveAndsimpleEditing()
     {
@@ -167,9 +167,9 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
     /**
      * Create advanced uploaded image with given uploaded image instance.
      *
-     * @param \Vinter\UploadedImage\UploadedImage $uploadedImage
+     * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public static function createFromBase($uploadedImage)
     {
@@ -190,7 +190,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Make intervention image instance, that points the same (real) temporary
      * file, as the uploaded image.
      *
-     * @param \Vinter\UploadedImage\UploadedImage $uploadedImage
+     * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
      *
      * @return \Intervention\Image\Image
      */

@@ -1,11 +1,11 @@
 <?php
 
-namespace Vinter\UploadedImage;
+namespace Vinterskogen\UploadedImage;
 
 use LogicException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
-use Vinter\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
+use Vinterskogen\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
 
 class UploadedImage extends UploadedFile implements UploadedImageContract
 {
@@ -19,7 +19,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Get AdvancedUploadedImage instance for advanced editing.
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public function advancedEditing()
     {
@@ -30,7 +30,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Get AdvancedUploadedImage instance, that points the same (real)
      * temporary file, as this uploaded image.
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     private function getAdvancedUploadedImage()
     {
@@ -44,7 +44,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Make an AdvancedUploadedImage instance from base.
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     private function makeAdvancedUploadedImage()
     {

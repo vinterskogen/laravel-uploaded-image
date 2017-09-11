@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinter\UploadedImage;
+namespace Vinterskogen\UploadedImage;
 
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +39,7 @@ class UploadedImageServiceProvider extends ServiceProvider
          * from request.
          *
          * @param string $filename
-         * @return \Vinter\UploadedImage\UploadedImage|null
+         * @return \Vinterskogen\UploadedImage\UploadedImage|null
          */
         return function ($filename) {
             if (! Request::hasFile($filename)) {

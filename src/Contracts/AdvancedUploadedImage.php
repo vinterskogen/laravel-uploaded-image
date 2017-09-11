@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinter\UploadedImage\Contracts;
+namespace Vinterskogen\UploadedImage\Contracts;
 
 interface AdvancedUploadedImage
 {
@@ -8,7 +8,7 @@ interface AdvancedUploadedImage
      * Save the applied changed to (real) temporary file and return
      * UploadedImage instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function simpleEditing();
 
@@ -16,7 +16,7 @@ interface AdvancedUploadedImage
      * Do not save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function doNotSaveAndSimpleEditing();
 
@@ -24,16 +24,16 @@ interface AdvancedUploadedImage
      * Don't save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return \Vinter\UploadedImage\UploadedImage
+     * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function dontSaveAndsimpleEditing();
 
     /**
      * Create advanced uploaded image with given uploaded image instance.
      *
-     * @param \Vinter\UploadedImage\UploadedImage $uploadedImage
+     * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
      *
-     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public static function createFromBase($uploadedImage);
 }

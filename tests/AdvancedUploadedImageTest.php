@@ -1,14 +1,14 @@
 <?php
 
-namespace Vinter\UploadedImage\Tests;
+namespace Vinterskogen\UploadedImage\Tests;
 
 use Mockery;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
-use Vinter\UploadedImage\UploadedImage;
-use Vinter\UploadedImage\AdvancedUploadedImage;
+use Vinterskogen\UploadedImage\UploadedImage;
+use Vinterskogen\UploadedImage\AdvancedUploadedImage;
 
 class AdvancedUploadedImageTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinter\UploadedImage\Tests;
+namespace Vinterskogen\UploadedImage\Tests;
 
 use Mockery;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Vinter\UploadedImage\Tests;
+namespace Vinterskogen\UploadedImage\Tests;
 
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
-use Vinter\UploadedImage\UploadedImage;
-use Vinter\UploadedImage\AdvancedUploadedImage;
+use Vinterskogen\UploadedImage\UploadedImage;
+use Vinterskogen\UploadedImage\AdvancedUploadedImage;
 
 class UploadedImageTest extends TestCase
 {

@@ -1,10 +1,10 @@
 {
-    "name": "vinter/laravel-uploaded-image",    
+    "name": "vinterskogen/laravel-uploaded-image",    
     "description": "Gracefully deal with resizing, cropping and scaling uploaded images in Laravel apps",
     "license": "MIT",
     "authors": [
         {
-            "name": "Vinter Skogen",
+            "name": "Vinterskogen Skogen",
             "email": "vinter.skogen@yandex.ru"
         }
     ],
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vinter\\UploadedImage\\": "src/"
+            "Vinterskogen\\UploadedImage\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vinter\\UploadedImage\\Tests\\": "tests/"
+            "Vinterskogen\\UploadedImage\\Tests\\": "tests/"
         }
     },
     "suggest": {
@@ -36,7 +36,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Vinter\\UploadedImage\\UploadedImageServiceProvider"
+                "Vinterskogen\\UploadedImage\\UploadedImageServiceProvider"
             ]
         }
     }
