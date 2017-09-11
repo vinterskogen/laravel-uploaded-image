@@ -171,7 +171,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      *
      * @return \Vinter\UploadedImage\AdvancedUploadedImage
      */
-    public static function createFromBase(UploadedImage $uploadedImage)
+    public static function createFromBase($uploadedImage)
     {
         $interventionImage = static::makeInterventionImage($uploadedImage);
 
