@@ -2,9 +2,9 @@
 
 namespace Vinter\UploadedImage;
 
+use LogicException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
-use LogicException;
 use Vinter\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
 
 class UploadedImage extends UploadedFile implements UploadedImageContract
@@ -34,7 +34,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     private function getAdvancedUploadedImage()
     {
-        if (!isset($this->advancedUplodedImage)) {
+        if (! isset($this->advancedUplodedImage)) {
             $this->advancedUplodedImage = $this->makeAdvancedUploadedImage();
         }
 

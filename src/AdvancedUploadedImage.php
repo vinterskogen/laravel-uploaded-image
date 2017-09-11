@@ -3,10 +3,10 @@
 namespace Vinter\UploadedImage;
 
 use Exception;
-use Intervention\Image\AbstractDriver;
-use Intervention\Image\Exception\NotSupportedException;
 use Intervention\Image\Facades\Image;
+use Intervention\Image\AbstractDriver;
 use Intervention\Image\Image as InterventionImage;
+use Intervention\Image\Exception\NotSupportedException;
 use Vinter\UploadedImage\Contracts\AdvancedUploadedImage as AdvancedUploadedImageContract;
 
 class AdvancedUploadedImage extends InterventionImage implements AdvancedUploadedImageContract
@@ -86,7 +86,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
             // If catched exception is not a 'command not supported' exception,
             // which is only one we are expecting here, we understand that
             // something unwanted took place, so we throw it further.
-            if (!$this->isExceptedException($exception)) {
+            if (! $this->isExceptedException($exception)) {
                 throw $exception;
             }
 

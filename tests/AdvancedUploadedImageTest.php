@@ -2,13 +2,13 @@
 
 namespace Vinter\UploadedImage\Tests;
 
+use Mockery;
 use Illuminate\Http\UploadedFile;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\Gd\Driver;
 use Intervention\Image\ImageManager;
-use Mockery;
-use Vinter\UploadedImage\AdvancedUploadedImage;
+use Intervention\Image\Facades\Image;
 use Vinter\UploadedImage\UploadedImage;
+use Vinter\UploadedImage\AdvancedUploadedImage;
 
 class AdvancedUploadedImageTest extends TestCase
 {

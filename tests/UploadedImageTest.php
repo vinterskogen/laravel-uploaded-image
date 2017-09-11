@@ -3,10 +3,10 @@
 namespace Vinter\UploadedImage\Tests;
 
 use Illuminate\Http\UploadedFile;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
-use Vinter\UploadedImage\AdvancedUploadedImage;
+use Intervention\Image\Facades\Image;
 use Vinter\UploadedImage\UploadedImage;
+use Vinter\UploadedImage\AdvancedUploadedImage;
 
 class UploadedImageTest extends TestCase
 {
