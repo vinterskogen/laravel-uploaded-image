@@ -7,7 +7,7 @@ apps.
 
 ### Requirements
 
-- PHP version: >= 5.6.4 or >=7.0
+- PHP version: >=7.0
 - [Intervention Image](http://image.intervention.io/) library ("intervention/image"): ^2.2
 - "illuminate/http": ~5.4
 - "illuminate/support": ~5.4
