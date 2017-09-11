@@ -1,0 +1,27 @@
+language: php
+
+sudo: false
+
+env:
+  global:
+    - setup=basic
+    - xdebug=true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  include:
+    - php: 7.0
+    - php: 7.1
+      env: xdebug=false
+
+before_install:
+  - if [[ $xdebug = 'true' ]] ; then phpenv config-rm xdebug.ini; fi
+
+install:
+  - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction --no-suggest; fi
+
+script:
+  - vendor/bin/phpunit
