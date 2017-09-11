@@ -29,6 +29,10 @@
             "Vinter\\UploadedImage\\Tests\\": "tests/"
         }
     },
+    "suggest": {
+        "ext-gd": "to use GD library based image processing.",
+        "ext-imagick": "to use Imagick based image processing."
+    },
     "extra": {
         "laravel": {
             "providers": [
