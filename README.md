@@ -26,13 +26,15 @@ Install via Composer:
 
 Coming soon...
 
-## Basic Usage
+## About 
 
 This package allows you to retrieve an uploaded image object from request, apply
 manipulations over the image content and then place the result to file storage.
 
 Under the hud this package uses the [Intervention Image](http://image.intervention.io/) -
 a PHP image handling and manipulation library.
+
+## Basic Usage
 
 For example your app has a controller that handles the users' avatars uploads 
 and save the avatar images to file storage (to 's3', local 'public' storage,
