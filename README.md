@@ -1,5 +1,7 @@
 # Uploaded image for Laravel
 
+[![StyleCI](https://styleci.io/repos/103072768/shield?branch=master)](https://styleci.io/repos/103072768)
+
 <p align="center"><a href="https://github.com/vinterskogen/laravel-uploaded-image" target="_blank"><img src="https://user-images.githubusercontent.com/8015372/30256350-b7045fda-96b2-11e7-989e-1b509beccd4c.png"></a></p>
 
 Gracefully deal with resizing, cropping and scaling uploaded images in Laravel
