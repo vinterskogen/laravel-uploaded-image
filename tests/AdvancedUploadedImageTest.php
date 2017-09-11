@@ -2,14 +2,13 @@
 
 namespace Vinter\UploadedImage\Tests;
 
-use Mockery;
-use Intervention\Image\Gd\Driver;
 use Illuminate\Http\UploadedFile;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
-use Vinter\UploadedImage\UploadedImage;
-use Vinter\UploadedImage\Tests\TestCase;
+use Intervention\Image\Gd\Driver;
+use Intervention\Image\ImageManager;
+use Mockery;
 use Vinter\UploadedImage\AdvancedUploadedImage;
+use Vinter\UploadedImage\UploadedImage;
 
 class AdvancedUploadedImageTest extends TestCase
 {
@@ -30,7 +29,7 @@ class AdvancedUploadedImageTest extends TestCase
 
         $actualAdvancedUploadedImage = new AdvancedUploadedImage(
             $uploadedImage,
-            new Driver,
+            new Driver(),
             imagecreatefrompng($realPath)
         );
 
@@ -63,7 +62,7 @@ class AdvancedUploadedImageTest extends TestCase
         $realPath = $originalUploadedImage->getRealPath();
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $basePath = 'foo/bar/baz';
@@ -110,7 +109,7 @@ class AdvancedUploadedImageTest extends TestCase
         $uploadedImage->shouldReceive('store')->andReturn();
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $advancedUploadedImage = AdvancedUploadedImage::createFromBase($uploadedImage);
@@ -159,7 +158,7 @@ class AdvancedUploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $actualResult = AdvancedUploadedImage::createFromBase($uploadedImage);
@@ -191,7 +190,7 @@ class AdvancedUploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $advancedUploadedImage = AdvancedUploadedImage::createFromBase($uploadedImage);
