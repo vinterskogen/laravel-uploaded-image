@@ -1,0 +1,235 @@
+<?php
+
+namespace Vinter\UploadedImage;
+
+use LogicException;
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
+use Vinter\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
+
+class UploadedImage extends UploadedFile implements UploadedImageContract
+{
+    /**
+     * The intervention image instance.
+     *
+     * @var \Intervention\Image\Image
+     */
+    protected $advancedUplodedImage;
+
+    /**
+     * Get AdvancedUploadedImage instance for advanced editing.
+     *
+     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     */
+    public function advancedEditing()
+    {
+        return $this->getAdvancedUploadedImage();
+    }
+
+    /**
+     * Get AdvancedUploadedImage instance, that points the same (real)
+     * temporary file, as this uploaded image.
+     *
+     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     */
+    private function getAdvancedUploadedImage()
+    {
+        if (! isset($this->advancedUplodedImage)) {
+            $this->advancedUplodedImage = $this->makeAdvancedUploadedImage();
+        }
+
+        return $this->advancedUplodedImage;
+    }
+
+    /**
+     * Make an AdvancedUploadedImage instance from base.
+     *
+     * @return \Vinter\UploadedImage\AdvancedUploadedImage
+     */
+    private function makeAdvancedUploadedImage()
+    {
+        return AdvancedUploadedImage::createFromBase($this);
+    }
+
+    /**
+     * Make an Intervention Image instance, that points the same (real)
+     * temporary file, as this uploaded image.
+     *
+     * @return \Intervention\Image\Image
+     */
+    private function makeInterventionImage()
+    {
+        $realPath = $this->getRealPath();
+
+        return Image::make($realPath);
+    }
+
+    /**
+     * Get height in pixels of uploaded image.
+     *
+     * @return integer
+     */
+    public function height()
+    {
+        return $this->makeInterventionImage()->height();
+    }
+
+    /**
+     * Get width in pixels of uploaded image.
+     *
+     * @return integer
+     */
+    public function width()
+    {
+        return $this->makeInterventionImage()->width();
+    }
+
+    /**
+     * Resize the uploaded image to new width, constraining aspect ratio.
+     *
+     * @param integer $width
+     * @return $this
+     */
+    public function widen($width)
+    {
+        $this->makeInterventionImage()
+            ->widen($width)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Resize the uploaded image to new height, constraining aspect ratio.
+     *
+     * @param integer $height
+     * @return $this
+     */
+    public function heighten($height)
+    {
+        $this->makeInterventionImage()
+            ->heighten($height)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Resize the uploaded image to best fit a given dimensions, keeping aspect
+     * ratio.
+     *
+     * @param integer $width
+     * @param integer $height
+     * @return $this
+     */
+    public function resizeToBestFit($width, $height)
+    {
+        $resizeConstraint = function ($constraint) {
+            $constraint->aspectRatio();
+        };
+
+        $this->makeInterventionImage()
+            ->resize($width, $height, $resizeConstraint)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Resize an uploaded image to best fit a given dimensions, keeping aspect
+     * ratio and with upsize constraint.
+     *
+     * @param integer $width
+     * @param integer $height
+     * @return $this
+     */
+    public function resizeToBestFitWithUpsizeConstraint($width, $height)
+    {
+        $resizeConstraint = function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        };
+
+        $this->makeInterventionImage()
+            ->resize($width, $height, $resizeConstraint)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Crop uploaded image to given width and height.
+     *
+     * @param integer $width
+     * @param integer $height
+     * @param integer|null $x
+     * @param integer|null $y
+     * @return $this
+     */
+    public function crop($width, $height, $x = null, $y = null)
+    {
+        $this->makeInterventionImage()
+            ->crop($width, $height, $x, $y)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Encode uploaded image in given format and quality.
+     *
+     * @param mixed $format
+     * @param integer|null $quality
+     * @return $this
+     */
+    public function encode($format, $quality = null)
+    {
+        $this->makeInterventionImage()
+            ->encode($format, $quality)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Scale the uploaded image size using given percentage.
+     *
+     * @param integer|float $percentage
+     * @return $this
+     */
+    public function scale($percentage)
+    {
+        $this->validatePercentageValue($percentage);
+
+        $percentage = floatval($percentage);
+        $width = $this->width() / 100 * $percentage;
+        $height = $this->height() / 100 * $percentage;
+
+        $this->makeInterventionImage()
+            ->resize($width, $height)
+            ->save();
+
+        return $this;
+    }
+
+    /**
+     * Validate percentage value.
+     *
+     * @param integer|float $percentage
+     * @return void
+     *
+     * @throws \LogicException
+     */
+    private function validatePercentageValue($percentage)
+    {
+        if (($percentage = floatval($percentage)) > 0) {
+            return;
+        }
+
+        throw new LogicException(
+            "Percentage should be an number greater than zero. ".
+            "Value ({$percentage}) was given."
+        );
+    }
+
+}
