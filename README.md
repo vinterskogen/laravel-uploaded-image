@@ -17,6 +17,8 @@ apps.
 - "illuminate/support": ~5.4
 - "symfony/http-foundation": ~3.2
 
+*Note: support for PHP version 5.6 Laravel version 5.3 is planned.*
+
 ### How to install
 
 Install via Composer:
