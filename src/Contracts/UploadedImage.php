@@ -83,7 +83,7 @@ interface UploadedImage
     public function encode($format, $quality = null);
 
     /**
-     * Get AdvancedUploadedImage istance for advanced editing.
+     * Get AdvancedUploadedImage instance for advanced editing.
      *
      * @return \Vinter\UploadedImage\AdvancedUploadedImage
      */
