@@ -39,7 +39,7 @@ interface UploadedImage
     /**
      * Scale the uploaded image size using given percentage.
      *
-     * @param int $percentage
+     * @param int|float $percentage
      *
      * @return $this
      */
