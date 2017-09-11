@@ -3,7 +3,7 @@
 Gracefully deal with resizing, cropping and scaling uploaded images in Laravel
 apps.
 
-## Instalation
+## Installation
 
 ### Requirements
 
