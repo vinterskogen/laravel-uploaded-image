@@ -34,7 +34,7 @@ class UploadedImageServiceProvider extends ServiceProvider
      */
     private function getImageRetrivingClosure()
     {
-        /**
+        /*
          * Closure to retrieve an instnce of uploaded image with given filename
          * from request.
          *
@@ -42,7 +42,7 @@ class UploadedImageServiceProvider extends ServiceProvider
          * @return \Vinter\UploadedImage\UploadedImage|null
          */
         return function ($filename) {
-            if (! Request::hasFile($filename)) {
+            if (!Request::hasFile($filename)) {
                 return;
             }
 

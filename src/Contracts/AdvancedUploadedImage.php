@@ -33,7 +33,8 @@ interface AdvancedUploadedImage
     /**
      * Create advanced uploaded image with given uploaded image instance.
      *
-     * @param  \Vinter\UploadedImage\UploadedImage $uploadedImage
+     * @param \Vinter\UploadedImage\UploadedImage $uploadedImage
+     *
      * @return \Vinter\UploadedImage\AdvancedUploadedImage
      */
     public static function createFromBase(UploadedImage $uploadedImage);

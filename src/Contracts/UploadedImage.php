@@ -7,21 +7,22 @@ interface UploadedImage
     /**
      * Get height in pixels of uploaded image.
      *
-     * @return integer
+     * @return int
      */
     public function height();
 
     /**
      * Get width in pixels of uploaded image.
      *
-     * @return integer
+     * @return int
      */
     public function width();
 
     /**
      * Resize the uploaded image to new width, constraining aspect ratio.
      *
-     * @param integer $width
+     * @param int $width
+     *
      * @return $this
      */
     public function widen($width);
@@ -29,7 +30,8 @@ interface UploadedImage
     /**
      * Resize the uploaded image to new height, constraining aspect ratio.
      *
-     * @param integer $height
+     * @param int $height
+     *
      * @return $this
      */
     public function heighten($height);
@@ -37,7 +39,8 @@ interface UploadedImage
     /**
      * Scale the uploaded image size using given percentage.
      *
-     * @param integer $percentage
+     * @param int $percentage
+     *
      * @return $this
      */
     public function scale($percentage);
@@ -46,8 +49,9 @@ interface UploadedImage
      * Resize the uploaded image to best fit a given dimensions, keeping aspect
      * ratio.
      *
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
+     *
      * @return $this
      */
     public function resizeToBestFit($width, $height);
@@ -56,8 +60,9 @@ interface UploadedImage
      * Resize an uploaded image to best fit a given dimensions, keeping aspect
      * ratio and with upsize constraint.
      *
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
+     *
      * @return $this
      */
     public function resizeToBestFitWithUpsizeConstraint($width, $height);
@@ -65,10 +70,11 @@ interface UploadedImage
     /**
      * Crop uploaded image to given width and height.
      *
-     * @param integer $width
-     * @param integer $height
-     * @param integer|null $x
-     * @param integer|null $y
+     * @param int      $width
+     * @param int      $height
+     * @param int|null $x
+     * @param int|null $y
+     *
      * @return $this
      */
     public function crop($width, $height, $x = null, $y = null);
@@ -76,8 +82,9 @@ interface UploadedImage
     /**
      * Encode uploaded image in given format and quality.
      *
-     * @param mixed $format
-     * @param integer|null $quality
+     * @param mixed    $format
+     * @param int|null $quality
+     *
      * @return $this
      */
     public function encode($format, $quality = null);

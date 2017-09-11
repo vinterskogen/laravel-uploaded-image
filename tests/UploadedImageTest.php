@@ -3,12 +3,10 @@
 namespace Vinter\UploadedImage\Tests;
 
 use Illuminate\Http\UploadedFile;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
-use Vinter\UploadedImage\UploadedImage;
-use Vinter\UploadedImage\Tests\TestCase;
+use Intervention\Image\ImageManager;
 use Vinter\UploadedImage\AdvancedUploadedImage;
-use Intervention\Image\Image as InterventionImage;
+use Vinter\UploadedImage\UploadedImage;
 
 class UploadedImageTest extends TestCase
 {
@@ -27,7 +25,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $this->assertEquals($height, $uploadedImage->height());
@@ -48,7 +46,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $this->assertEquals($width, $uploadedImage->width());
@@ -69,7 +67,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $uploadedImage->widen($widen = 250);
@@ -97,7 +95,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $uploadedImage->heighten($heighten = 300);
@@ -125,7 +123,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $uploadedImage->scale($percentage = 150);
@@ -153,7 +151,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $uploadedImage->scale($percentage = 75.0);
@@ -170,6 +168,7 @@ class UploadedImageTest extends TestCase
      * Test scale method throws LogicException on wrong percentage.
      *
      * @expectedException \LogicException
+     *
      * @return void
      */
     public function testScaleThrowsLogicExceptionOnWrongPercentage()
@@ -195,7 +194,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $actualResult = $uploadedImage->advancedEditing();
@@ -219,7 +218,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $fitToWidth = 1000;
@@ -250,7 +249,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $fitToWidth = 2000;
@@ -281,7 +280,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $fitToWidth = 1000;
@@ -313,7 +312,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $fitToUpsizedWidth = 2000;
@@ -345,7 +344,7 @@ class UploadedImageTest extends TestCase
         $uploadedImage = UploadedImage::createFromBase($uploadedFile);
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $cropToWidth = 200;
@@ -375,7 +374,7 @@ class UploadedImageTest extends TestCase
         $realPath = $uploadedFile->getRealPath();
 
         Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager)->make($realPath);
+            return (new ImageManager())->make($realPath);
         });
 
         $uploadedImage->encode($format = 'jpg', $quality = 95);

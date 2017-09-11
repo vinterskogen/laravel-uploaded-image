@@ -2,9 +2,9 @@
 
 namespace Vinter\UploadedImage;
 
-use LogicException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
+use LogicException;
 use Vinter\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
 
 class UploadedImage extends UploadedFile implements UploadedImageContract
@@ -34,7 +34,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     private function getAdvancedUploadedImage()
     {
-        if (! isset($this->advancedUplodedImage)) {
+        if (!isset($this->advancedUplodedImage)) {
             $this->advancedUplodedImage = $this->makeAdvancedUploadedImage();
         }
 
@@ -67,7 +67,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Get height in pixels of uploaded image.
      *
-     * @return integer
+     * @return int
      */
     public function height()
     {
@@ -77,7 +77,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Get width in pixels of uploaded image.
      *
-     * @return integer
+     * @return int
      */
     public function width()
     {
@@ -87,7 +87,8 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Resize the uploaded image to new width, constraining aspect ratio.
      *
-     * @param integer $width
+     * @param int $width
+     *
      * @return $this
      */
     public function widen($width)
@@ -102,7 +103,8 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Resize the uploaded image to new height, constraining aspect ratio.
      *
-     * @param integer $height
+     * @param int $height
+     *
      * @return $this
      */
     public function heighten($height)
@@ -118,8 +120,9 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Resize the uploaded image to best fit a given dimensions, keeping aspect
      * ratio.
      *
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
+     *
      * @return $this
      */
     public function resizeToBestFit($width, $height)
@@ -139,8 +142,9 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Resize an uploaded image to best fit a given dimensions, keeping aspect
      * ratio and with upsize constraint.
      *
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
+     *
      * @return $this
      */
     public function resizeToBestFitWithUpsizeConstraint($width, $height)
@@ -160,10 +164,11 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Crop uploaded image to given width and height.
      *
-     * @param integer $width
-     * @param integer $height
-     * @param integer|null $x
-     * @param integer|null $y
+     * @param int      $width
+     * @param int      $height
+     * @param int|null $x
+     * @param int|null $y
+     *
      * @return $this
      */
     public function crop($width, $height, $x = null, $y = null)
@@ -178,8 +183,9 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Encode uploaded image in given format and quality.
      *
-     * @param mixed $format
-     * @param integer|null $quality
+     * @param mixed    $format
+     * @param int|null $quality
+     *
      * @return $this
      */
     public function encode($format, $quality = null)
@@ -194,7 +200,8 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Scale the uploaded image size using given percentage.
      *
-     * @param integer|float $percentage
+     * @param int|float $percentage
+     *
      * @return $this
      */
     public function scale($percentage)
@@ -215,10 +222,11 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     /**
      * Validate percentage value.
      *
-     * @param integer|float $percentage
-     * @return void
+     * @param int|float $percentage
      *
      * @throws \LogicException
+     *
+     * @return void
      */
     private function validatePercentageValue($percentage)
     {
@@ -227,9 +235,8 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
         }
 
         throw new LogicException(
-            "Percentage should be an number greater than zero. ".
+            'Percentage should be an number greater than zero. '.
             "Value ({$percentage}) was given."
         );
     }
-
 }
