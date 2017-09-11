@@ -57,7 +57,7 @@ as an instance of `Vinterskogen\UploadedImage\Uploadedimage` class.
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
 
-### Basics image handling methods
+### Basic image handling methods
 
 The list of public methods that are available on `Uploadedimage`:
 
