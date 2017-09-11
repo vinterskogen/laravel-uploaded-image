@@ -10,7 +10,7 @@ interface AdvancedUploadedImage
      * Save the applied changed to (real) temporary file and return
      * UploadedImage instance for simple editing.
      *
-     * @return void
+     * @return \Vinter\UploadedImage\UploadedImage
      */
     public function simpleEditing();
 
@@ -18,7 +18,7 @@ interface AdvancedUploadedImage
      * Do not save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return void
+     * @return \Vinter\UploadedImage\UploadedImage
      */
     public function doNotSaveAndSimpleEditing();
 
@@ -26,7 +26,7 @@ interface AdvancedUploadedImage
      * Don't save the changes to (real) temporary file and return UploadedImage
      * instance for simple editing.
      *
-     * @return void
+     * @return \Vinter\UploadedImage\UploadedImage
      */
     public function dontSaveAndsimpleEditing();
 
