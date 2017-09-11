@@ -2,8 +2,6 @@
 
 namespace Vinter\UploadedImage\Contracts;
 
-use Vinter\UploadedImage\UploadedImage;
-
 interface AdvancedUploadedImage
 {
     /**
@@ -37,5 +35,5 @@ interface AdvancedUploadedImage
      *
      * @return \Vinter\UploadedImage\AdvancedUploadedImage
      */
-    public static function createFromBase(UploadedImage $uploadedImage);
+    public static function createFromBase($uploadedImage);
 }
