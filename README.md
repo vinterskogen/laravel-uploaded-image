@@ -65,14 +65,14 @@ The list of public methods that are available on `Uploadedimage`:
   image to given width and height
 - `encode(string $format, int $quality = null)` - encode uploaded image in given
 format and quality
-- `scale(int|float $percentage)` - crop uploaded image to given width and
-  height
-- `widen(int $width)` - resize the uploaded image to new width, constraining
-   aspect ratio
-- `heighten(int $height)` - resize the uploaded image to new height,
+- `scale(int|float $percentage)` - scale the uploaded image size using given
+percentage
+- `resizeToWidth(int $width)` - resize the uploaded image to new width,
   constraining aspect ratio
-- `resizeToBestFit(int $width, int $height)` - resize the uploaded image to best
-  fit a given dimensions, keeping aspect ratio
+- `resizeToHeight(int $height)` - resize the uploaded image to new height,
+  constraining aspect ratio
+- `fit(int $width, int $height)` - resize and crop the uploaded image to fit a
+  given dimensions, keeping aspect ratio
 - `height()` - get height in pixels of uploaded image
 - `width()` - get width in pixels of uploaded image
 
