@@ -7,8 +7,8 @@ Install via Composer:
 `composer require vinterskogen/laravel-uploaded-image`
 
 After the installation, open your Laravel config file `config/app.php` and add
-the following lines to the `$providers` array to add service providers for
-this package:
+the following lines to the `providers` array to add service providers for
+this package to your app:
 
 ```php
 Vinterskogen\UploadedImage\UploadedImageServiceProvider::class,
@@ -16,7 +16,7 @@ Intervention\Image\ImageServiceProvider::class,
 ```
 
 **Note**: since Laravel 5.5 now includes a package auto-discovery feature you do
-not have to do it anymore, if you are using 5.5 version of Laravel.
+not have to do it anymore, if you are using latest version of Laravel.
 
 ### Requirements
 
@@ -33,5 +33,6 @@ not have to do it anymore, if you are using 5.5 version of Laravel.
 - Intervention Image requires GD Library (>=3.0) or Imagick PHP extension
   (>=6.5.7). Check if you have installed at least one of then.
 - GD is used by Intervention Image as default driver for image handling.
-- Imagick support is also provided - see the [documentation](http://image.intervention.io/getting_started/configuration)
-  page to enable it.
+- Imagick support is also provided by Intervention Image - check the
+  [documentation](http://image.intervention.io/getting_started/configuration)
+page if you want to enable it.
