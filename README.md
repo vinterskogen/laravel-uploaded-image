@@ -50,9 +50,9 @@ $request->image('avatar')
 	->store('images/avatars', 's3');
 ```
 
-The `$request` object now (and also the `Request` facade) has an `image` method,
-that works like the `file` method - retrieves the image file from the input 
-as an instance of `Vinterskogen\UploadedImage\Uploadedimage` class. 
+The `$request` object (and also the `Request` facade) now have an `image`
+method, that works like the `file` method - retrieves the image file from the
+input as an instance of `Vinterskogen\UploadedImage\Uploadedimage` class. 
 
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
