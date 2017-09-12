@@ -7,6 +7,15 @@
 Gracefully deal with resizing, cropping and scaling uploaded images in Laravel
 apps.
 
+## About
+
+This package allows you to retrieve an uploaded image object from request, apply
+manipulations over the image content and then place the result to file storage
+in few lines of code.
+
+Under the hood this package uses the [Intervention Image](http://image.intervention.io/) -
+a PHP image handling and manipulation library.
+
 ## Installation
 
 ### Requirements
@@ -18,7 +27,13 @@ apps.
 - symfony/http-foundation: ~3.2
 - ext-gd
 
-***Note**: support for PHP 5.6 and Laravel 5.3 is planned.*
+**Note**:
+- Backward compatibility for PHP 5.6 and Laravel 5.3 is planned.
+- Intervention Image requires GD Library (>=3.0) or Imagick PHP extension
+  (>=6.5.7). Check if you have installed at least one of then.
+- GD is used by Intervention Image as default driver for image handling.
+- Imagick support is also provided. See the [documentation](http://image.intervention.io/getting_started/configuration)
+  page to configure it.
 
 ### How to install
 
@@ -26,20 +41,24 @@ Install via Composer:
 
 `composer require vinterskogen/laravel-uploaded-image`
 
-## About 
+After the installation, open your Laravel config file `config/app.php` and add
+the following lines to the `$providers` array to add service providers for
+this package:
 
-This package allows you to retrieve an uploaded image object from request, apply
-manipulations over the image content and then place the result to file storage.
+```php
+Vinterskogen\UploadedImage\UploadedImageServiceProvider::class,
+Intervention\Image\ImageServiceProvider::class,
+```
 
-Under the hud this package uses the [Intervention Image](http://image.intervention.io/) -
-a PHP image handling and manipulation library.
+Note: since Laravel 5.5 now includes a package auto-discovery feature you do
+not have to do it anymore, if you are using 5.5 version of Laravel.
 
 ## Basic Usage
 
 For example your app has a controller that handles the users' avatars uploads 
-and saves the avatar images to file storage ('s3', local 'public' storage, or
-whatever else). You want that avatars to fit to 250x250 pixels square and to
-be encoded into PNG format before putting to storage.
+and saves the avatar images to file storage (cloud, local 'public' storage,
+etc.). You want that avatars to fit to 250x250 pixels square and to be encoded
+into PNG format before putting to storage.
 
 This can be done as easy as:
 
@@ -47,7 +66,7 @@ This can be done as easy as:
 $request->image('avatar')
 	->fit(250, 250)
 	->encode('png')
-	->store('images/users/avatars', 's3');
+	->store('images/users/avatars', 'public');
 ```
 
 The `$request` object (and also the `Request` facade) now have an `image`
