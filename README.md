@@ -61,6 +61,7 @@ a number of helpful image handling methods.
 
 The list of public methods that are available on `Uploadedimage`:
 
+- `fit(int $width, int $height)` - resize and crop the uploaded image to fit a
 - `crop(int $width, int $height, int $x = null, int $y = null)` - crop uploaded
   image to given width and height
 - `encode(string $format, int $quality = null)` - encode uploaded image in given
@@ -71,7 +72,6 @@ percentage
   constraining aspect ratio
 - `resizeToHeight(int $height)` - resize the uploaded image to new height,
   constraining aspect ratio
-- `fit(int $width, int $height)` - resize and crop the uploaded image to fit a
   given dimensions, keeping aspect ratio
 - `height()` - get height in pixels of uploaded image
 - `width()` - get width in pixels of uploaded image
