@@ -29,10 +29,10 @@ not have to do it anymore, if you are using latest version of Laravel.
 
 **Note**:
 
-- Backward compatibility for PHP 5.6 and Laravel 5.3 is planned.
-- Intervention Image requires GD Library (>=3.0) or Imagick PHP extension
-  (>=6.5.7). Check if you have installed at least one of then.
-- GD is used by Intervention Image as default driver for image handling.
-- Imagick support is also provided by Intervention Image - check the
+- Intervention Image library requires GD library or Imagick PHP extension
+  Check if you have installed at least one of then.
+- GD is used by Intervention Image driver for image handling by default.
+- Imagick support is also provided - check the Intervention Image's 
   [documentation](http://image.intervention.io/getting_started/configuration)
-page if you want to enable it.
+if you want to enable it.
+
