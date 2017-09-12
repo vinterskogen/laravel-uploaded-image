@@ -52,17 +52,19 @@ $request->image('avatar')
 
 The `$request` object (and also the `Request` facade) now have an `image`
 method, that works like the `file` method - retrieves the image file from the
-input as an instance of `Vinterskogen\UploadedImage\Uploadedimage` class. 
+input and returns it as an instance of `Vinterskogen\UploadedImage\Uploadedimage`
+class. 
 
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
 
 ### Basic image handling methods
 
-The list of public methods that are available on `Uploadedimage`:
+The list of public methods that are available on `Uploadedimage` instance to 
+handle image:
 
 - `fit(int $width, int $height)` - resize and crop the uploaded image to fit
-  given width and height
+  given width and height, keeping aspect ratio
 - `crop(int $width, int $height, int $x = null, int $y = null)` - crop uploaded
   image to given width and height
 - `encode(string $format, int $quality = null)` - encode uploaded image in given
@@ -73,9 +75,8 @@ percentage
   constraining aspect ratio
 - `resizeToHeight(int $height)` - resize the uploaded image to new height,
   constraining aspect ratio
-  given dimensions, keeping aspect ratio
-- `height()` - get height in pixels of uploaded image
-- `width()` - get width in pixels of uploaded image
+- `height()` - get height of uploaded image (in pixels)
+- `width()` - get width of uploaded image (in pixels)
 
 ## Advanced usage
 
