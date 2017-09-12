@@ -39,7 +39,7 @@ a PHP image handling and manipulation library.
 For example your app has a controller that handles the users' avatars uploads 
 and saves the avatar images to file storage ('s3', local 'public' storage, or
 whatever else). You want that avatars to fit to 250x250 pixels square and to
-be encoded into PNG format before puting to storage.
+be encoded into PNG format before putting to storage.
 
 This can be done as easy as:
 
