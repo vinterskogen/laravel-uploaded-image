@@ -24,7 +24,7 @@ apps.
 
 Install via Composer:
 
-Coming soon...
+`composer require vinterskogen/laravel-uploaded-image`
 
 ## About 
 
