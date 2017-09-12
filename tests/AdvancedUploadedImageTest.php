@@ -199,4 +199,34 @@ class AdvancedUploadedImageTest extends TestCase
 
         $this->assertInstanceOf(UploadedImage::class, $actualResult);
     }
+
+    /**
+     * Test don't save and simple editing method.
+     *
+     * @return void
+     */
+    public function testDontSaveAndsimpleEditing()
+    {
+        $filename = 'image.png';
+        $width = 1000;
+        $height = 800;
+
+        $uploadedFile = UploadedFile::fake()->image($filename, $width, $height);
+        $uploadedImage = UploadedImage::createFromBase($uploadedFile);
+
+        Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
+            return (new ImageManager())->make($realPath);
+        });
+
+        $actualResult = AdvancedUploadedImage::createFromBase($uploadedImage)
+            ->crop(mt_rand(200, 300), mt_rand(200, 300))
+            ->dontSaveAndsimpleEditing();
+
+        list($actualWidth, $actualHeight) = getimagesize($uploadedImage->getRealPath());
+
+        $this->assertEquals($width, $actualWidth);
+        $this->assertEquals($height, $actualHeight);
+
+        $this->assertInstanceOf(UploadedImage::class, $actualResult);
+    }
 }

@@ -25,7 +25,7 @@ interface UploadedImage
      *
      * @return $this
      */
-    public function widen($width);
+    public function resizeToWidth($width);
 
     /**
      * Resize the uploaded image to new height, constraining aspect ratio.
@@ -34,7 +34,7 @@ interface UploadedImage
      *
      * @return $this
      */
-    public function heighten($height);
+    public function resizeToHeight($height);
 
     /**
      * Scale the uploaded image size using given percentage.
@@ -46,26 +46,15 @@ interface UploadedImage
     public function scale($percentage);
 
     /**
-     * Resize the uploaded image to best fit a given dimensions, keeping aspect
-     * ratio.
+     * Resize and crop the uploaded image to fit a given dimensions, keeping
+     * aspect ratio.
      *
      * @param int $width
      * @param int $height
      *
      * @return $this
      */
-    public function resizeToBestFit($width, $height);
-
-    /**
-     * Resize an uploaded image to best fit a given dimensions, keeping aspect
-     * ratio and with upsize constraint.
-     *
-     * @param int $width
-     * @param int $height
-     *
-     * @return $this
-     */
-    public function resizeToBestFitWithUpsizeConstraint($width, $height);
+    public function fit($width, $height);
 
     /**
      * Crop uploaded image to given width and height.

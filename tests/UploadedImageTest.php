@@ -57,7 +57,7 @@ class UploadedImageTest extends TestCase
      *
      * @return void
      */
-    public function testWiden()
+    public function testResizeToWidth()
     {
         $filename = 'image.jpg';
         $width = 1000;
@@ -70,7 +70,7 @@ class UploadedImageTest extends TestCase
             return (new ImageManager())->make($realPath);
         });
 
-        $uploadedImage->widen($widen = 250);
+        $uploadedImage->resizeToWidth($widen = 250);
 
         $expectedWidth = 250;
         $expectedHeight = 150;
@@ -85,7 +85,7 @@ class UploadedImageTest extends TestCase
      *
      * @return void
      */
-    public function testHeighten()
+    public function testResizeToHeight()
     {
         $filename = 'image.jpg';
         $width = 1000;
@@ -98,7 +98,7 @@ class UploadedImageTest extends TestCase
             return (new ImageManager())->make($realPath);
         });
 
-        $uploadedImage->heighten($heighten = 300);
+        $uploadedImage->resizeToHeight($heighten = 300);
 
         $expectedWidth = 500;
         $expectedHeight = 300;
@@ -204,11 +204,11 @@ class UploadedImageTest extends TestCase
     }
 
     /**
-     * Test resize to best fit method when downsizing.
+     * Test fit method, when downsizing image.
      *
      * @return void
      */
-    public function testResizeToBestFitDownsize()
+    public function testFitDownsize()
     {
         $filename = 'image.jpg';
         $width = 1000;
@@ -221,11 +221,9 @@ class UploadedImageTest extends TestCase
             return (new ImageManager())->make($realPath);
         });
 
-        $fitToWidth = 1000;
-        $fitToHeight = 300;
-        $uploadedImage->resizeToBestFit($fitToWidth, $fitToHeight);
+        $uploadedImage->fit($fitToWidth = 300, $fitToHeight = 300);
 
-        $expectedWidth = 500;
+        $expectedWidth = 300;
         $expectedHeight = 300;
 
         list($actualWidth, $actualHeight) = getimagesize($uploadedImage->getRealPath());
@@ -235,11 +233,11 @@ class UploadedImageTest extends TestCase
     }
 
     /**
-     * Test resize to best fit method when upsizing.
+     * Test fit method, when upsizing image.
      *
      * @return void
      */
-    public function testResizeToBestFitUpsize()
+    public function testFitUpsize()
     {
         $filename = 'image.jpg';
         $width = 1000;
@@ -252,81 +250,15 @@ class UploadedImageTest extends TestCase
             return (new ImageManager())->make($realPath);
         });
 
-        $fitToWidth = 2000;
-        $fitToHeight = 2000;
-        $uploadedImage->resizeToBestFit($fitToWidth, $fitToHeight);
+        $uploadedImage->fit($fitToWidth = 1200, $fitToHeight = 1200);
 
-        $expectedWidth = 2000;
+        $expectedWidth = 1200;
         $expectedHeight = 1200;
 
         list($actualWidth, $actualHeight) = getimagesize($uploadedImage->getRealPath());
 
         $this->assertEquals($expectedWidth, $actualWidth);
         $this->assertEquals($expectedHeight, $actualHeight);
-    }
-
-    /**
-     * Test resize to best fit with upsize constraint method when downsizing.
-     *
-     * @return void
-     */
-    public function testresizeToBestFitWithUpsizeConstraintDownsize()
-    {
-        $filename = 'image.jpg';
-        $width = 1000;
-        $height = 600;
-
-        $uploadedFile = UploadedFile::fake()->image($filename, $width, $height);
-        $uploadedImage = UploadedImage::createFromBase($uploadedFile);
-
-        Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager())->make($realPath);
-        });
-
-        $fitToWidth = 1000;
-        $fitToHeight = 300;
-
-        $uploadedImage->resizeToBestFitWithUpsizeConstraint($fitToWidth, $fitToHeight);
-
-        $expectedWidth = 500;
-        $expectedHeight = 300;
-        list($actualWidth, $actualHeight) = getimagesize($uploadedImage->getRealPath());
-
-        $this->assertEquals($expectedWidth, $actualWidth);
-        $this->assertEquals($expectedHeight, $actualHeight);
-    }
-
-    /**
-     * Test resize to best fit with upsize constraint method does not change
-     * image dimensions when upsizing.
-     *
-     * @return void
-     */
-    public function testresizeToBestFitWithUpsizeConstraintUpsize()
-    {
-        $filename = 'image.jpg';
-        $width = 1000;
-        $height = 600;
-
-        $uploadedFile = UploadedFile::fake()->image($filename, $width, $height);
-        $uploadedImage = UploadedImage::createFromBase($uploadedFile);
-
-        Image::shouldReceive('make')->andReturnUsing(function ($realPath) {
-            return (new ImageManager())->make($realPath);
-        });
-
-        $fitToUpsizedWidth = 2000;
-        $fitToUpsizedHeight = 2000;
-
-        $uploadedImage->resizeToBestFitWithUpsizeConstraint(
-            $fitToUpsizedWidth,
-            $fitToUpsizedHeight
-        );
-
-        list($actualWidth, $actualHeight) = getimagesize($uploadedImage->getRealPath());
-
-        $this->assertEquals($width, $actualWidth);
-        $this->assertEquals($height, $actualHeight);
     }
 
     /**

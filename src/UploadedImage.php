@@ -91,7 +91,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      *
      * @return $this
      */
-    public function widen($width)
+    public function resizeToWidth($width)
     {
         $this->makeInterventionImage()
             ->widen($width)
@@ -107,7 +107,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      *
      * @return $this
      */
-    public function heighten($height)
+    public function resizeToHeight($height)
     {
         $this->makeInterventionImage()
             ->heighten($height)
@@ -117,45 +117,18 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     }
 
     /**
-     * Resize the uploaded image to best fit a given dimensions, keeping aspect
-     * ratio.
+     * Resize and crop the uploaded image to fit a given dimensions, keeping
+     * aspect ratio.
      *
      * @param int $width
      * @param int $height
      *
      * @return $this
      */
-    public function resizeToBestFit($width, $height)
+    public function fit($width, $height)
     {
-        $resizeConstraint = function ($constraint) {
-            $constraint->aspectRatio();
-        };
-
         $this->makeInterventionImage()
-            ->resize($width, $height, $resizeConstraint)
-            ->save();
-
-        return $this;
-    }
-
-    /**
-     * Resize an uploaded image to best fit a given dimensions, keeping aspect
-     * ratio and with upsize constraint.
-     *
-     * @param int $width
-     * @param int $height
-     *
-     * @return $this
-     */
-    public function resizeToBestFitWithUpsizeConstraint($width, $height)
-    {
-        $resizeConstraint = function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        };
-
-        $this->makeInterventionImage()
-            ->resize($width, $height, $resizeConstraint)
+            ->fit($width, $height)
             ->save();
 
         return $this;
