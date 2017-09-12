@@ -37,17 +37,17 @@ a PHP image handling and manipulation library.
 ## Basic Usage
 
 For example your app has a controller that handles the users' avatars uploads 
-and save the avatar images to file storage (to 's3', local 'public' storage,
-or whatever else).You want that avatars to be cropped to 250x250 pixels and
-encoded into PNG format before storing them.
+and saves the avatar images to file storage ('s3', local 'public' storage, or
+whatever else). You want that avatars to fit to 250x250 pixels square and to
+be encoded into PNG format before puting to storage.
 
 This can be done as easy as:
 
 ```php
 $request->image('avatar')
-	->crop(250, 250)
+	->fit(250, 250)
 	->encode('png')
-	->store('images/avatars', 's3');
+	->store('images/users/avatars', 's3');
 ```
 
 The `$request` object (and also the `Request` facade) now have an `image`

@@ -82,6 +82,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
             // on the parent class. So we call the corresponding method on the
             // Intervention\Image\Image class and just return the result.
             return call_user_func_array([parent::class, $method], $arguments);
+
         } catch (Exception $exception) {
             // If catched exception is not a 'command not supported' exception,
             // which is only one we are expecting here, we understand that
