@@ -13,7 +13,7 @@ This package allows you to retrieve an uploaded image object from request, apply
 manipulations over the image content and then place the result to file storage
 in a few lines of code.
 
-Under the hood this package uses [Intervention Image](http://image.intervention.io/) -
+Under the hood this package is using [Intervention Image](http://image.intervention.io/) -
 a PHP image handling and manipulation library.
 
 ## Installation
@@ -22,8 +22,8 @@ Install via Composer:
 
 `composer require vinterskogen/laravel-uploaded-image`
 
-See the [Installation](docs/installation.md) page for full information about
-package requirements.
+Check the [Installation](docs/installation.md) page for full information about
+package requirements and notes.
 
 ## Basic Usage
 
@@ -38,38 +38,77 @@ This can be done as easy as:
 
 ```php
 $request->image('avatar')
-	->fit(250, 250)
-	->encode('png')
-	->store('images/users/avatars', 'public');
+        ->fit(250, 250)
+        ->encode('png')
+        ->store('images/users/avatars', 'public');
 ```
 
 The `$request` object (and also the `Request` facade) now have an `image`
-method, that works like the `file` method - retrieves the image file from the
+method, that works just like the `file` method - retrieves an image file from the
 input and returns it as an instance of `Vinterskogen\UploadedImage\Uploadedimage`
 class. 
 
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
 
+**Note**: 
+
+Before start handling file like with an image you have to be sure it is actually 
+an image. You have to apply some [request form validation](https://laravel.com/docs/master/validation#form-request-validation) constraints on input (if you haven't done that yet, of course).
+
 ### Basic image handling methods
 
-The list of public methods that are available on `Uploadedimage` instance to 
-handle image:
+The list of public image handling methods that are available on `Uploadedimage` 
+instance:
 
-- `fit(int $width, int $height)` - resize and crop the uploaded image to fit
-  given width and height, keeping aspect ratio
-- `crop(int $width, int $height, int $x = null, int $y = null)` - crop uploaded
-  image to given width and height
-- `encode(string $format, int $quality = null)` - encode uploaded image in given
-format and quality
-- `scale(int|float $percentage)` - scale the uploaded image size using given
-percentage
-- `resizeToWidth(int $width)` - resize the uploaded image to new width,
-  constraining aspect ratio
-- `resizeToHeight(int $height)` - resize the uploaded image to new height,
-  constraining aspect ratio
-- `height()` - get height of uploaded image (in pixels)
-- `width()` - get width of uploaded image (in pixels)
+#### Fit
+
+`fit(int $width, int $height)` 
+
+Resize and crop the uploaded image to fit given width and height, keeping aspect 
+ratio.
+
+#### Crop
+
+`crop(int $width, int $height, int $x = null, int $y = null)`
+
+Crop uploaded  image to given width and height.
+
+#### Encode
+
+`encode(string $format, int $quality = null)` 
+
+Encode uploaded image in given format and quality.
+
+#### Scale
+
+`scale(int|float $percentage)`
+
+Scale the uploaded image size using given percentage.
+
+#### Resize to width
+
+`resizeToWidth(int $width)` 
+
+Resize the uploaded image to new width, constraining aspect ratio. 
+
+#### Resize to height
+
+`resizeToHeight(int $height)`
+
+Resize the uploaded image to new height,  constraining aspect ratio.
+
+#### Height
+
+`height()`
+
+Get height of uploaded image (in pixels).
+
+#### Width
+
+`width()`
+
+Get width of uploaded image (in pixels).
 
 ## Advanced usage
 
