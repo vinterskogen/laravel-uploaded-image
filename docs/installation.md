@@ -1,6 +1,6 @@
-## Installation
+# Installation
 
-### How to install
+## How to install
 
 Install via Composer:
 
@@ -18,7 +18,7 @@ Intervention\Image\ImageServiceProvider::class,
 **Note**: since Laravel 5.5 now includes a package auto-discovery feature you do
 not have to do it anymore, if you are using latest version of Laravel.
 
-### Requirements
+## Requirements
 
 - PHP version: >=7.0
 - intervention/image: ^2.2
