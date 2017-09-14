@@ -54,7 +54,7 @@ a number of helpful image handling methods.
 **Note**: 
 
 To be sure the file you are going to handle like an image is actually an image 
-file, you have to apply [request form validation](https://laravel.com/docs/master/validation#form-request-validation)
+file, you have to apply [form request validation](https://laravel.com/docs/master/validation#form-request-validation)
 constraints on your controller's input (if you haven't done that yet, of course).
 
 ### Basic image handling methods
