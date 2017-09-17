@@ -498,5 +498,4 @@ class UploadedImageTest extends TestCase
             ['storeAs'],
         ];
     }
-
 }
