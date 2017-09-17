@@ -5,16 +5,34 @@ namespace Vinterskogen\UploadedImage;
 use LogicException;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
+use Intervention\Image\Image as InterventionImage;
+use Vinterskogen\UploadedImage\Concerns\SavesBeforeStoring;
 use Vinterskogen\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
 
 class UploadedImage extends UploadedFile implements UploadedImageContract
 {
+    use SavesBeforeStoring;
+
+    /**
+     * The advanced uploaded image instance.
+     *
+     * @var \Vinterskogen\UploadedImage\AdvancedUploadedImage
+     */
+    protected $advancedUplodedImage;
+
     /**
      * The intervention image instance.
      *
      * @var \Intervention\Image\Image
      */
-    protected $advancedUplodedImage;
+    protected $interventionImage;
+
+    /**
+     * Intervention image modification flag.
+     *
+     * @var bool
+     */
+    protected $isModified = false;
 
     /**
      * Get AdvancedUploadedImage instance for advanced editing.
@@ -24,6 +42,50 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     public function advancedEditing()
     {
         return $this->getAdvancedUploadedImage();
+    }
+
+    /**
+     * Determine if intervention image is modified.
+     *
+     * @return bool
+     */
+    public function isModified()
+    {
+        return $this->isModified;
+    }
+
+    /**
+     * Set intervention image is modified flag to true.
+     *
+     * @return bool
+     */
+    protected function toggleModified()
+    {
+        return $this->isModified = true;
+    }
+
+    /**
+     * Set intervention image is modified flag to false.
+     *
+     * @return bool
+     */
+    protected function toggleNotModified()
+    {
+        return $this->isModified = false;
+    }
+
+    /**
+     * Fire intervention image saving.
+     *
+     * @return $this
+     */
+    public function save()
+    {
+        $this->getInterventionImage()->save();
+
+        $this->toggleNotModified();
+
+        return $this;
     }
 
     /**
@@ -52,6 +114,34 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
     }
 
     /**
+     * Get InterventionImage instance, that points the same (real) temporary
+     * file, as this uploaded image.
+     *
+     * @return \Intervention\Image\Image
+     */
+    public function getInterventionImage()
+    {
+        if (! isset($this->interventionImage)) {
+            $this->interventionImage = $this->makeInterventionImage();
+        }
+
+        return $this->interventionImage;
+    }
+
+    /**
+     * Set Intervention Image instance.
+     *
+     * @param \Intervention\Image\Image
+     * @return $this
+     */
+    public function setInterventionImage(InterventionImage $interventionImage)
+    {
+        $this->interventionImage = $interventionImage;
+
+        return $this;
+    }
+
+    /**
      * Make an Intervention Image instance, that points the same (real)
      * temporary file, as this uploaded image.
      *
@@ -71,7 +161,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     public function height()
     {
-        return $this->makeInterventionImage()->height();
+        return $this->getInterventionImage()->height();
     }
 
     /**
@@ -81,21 +171,20 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     public function width()
     {
-        return $this->makeInterventionImage()->width();
+        return $this->getInterventionImage()->width();
     }
 
     /**
      * Resize the uploaded image to new width, constraining aspect ratio.
      *
      * @param int $width
-     *
      * @return $this
      */
     public function resizeToWidth($width)
     {
-        $this->makeInterventionImage()
-            ->widen($width)
-            ->save();
+        $this->toggleModified();
+
+        $this->getInterventionImage()->widen($width);
 
         return $this;
     }
@@ -104,14 +193,13 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Resize the uploaded image to new height, constraining aspect ratio.
      *
      * @param int $height
-     *
      * @return $this
      */
     public function resizeToHeight($height)
     {
-        $this->makeInterventionImage()
-            ->heighten($height)
-            ->save();
+        $this->toggleModified();
+
+        $this->getInterventionImage()->heighten($height);
 
         return $this;
     }
@@ -122,14 +210,13 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      *
      * @param int $width
      * @param int $height
-     *
      * @return $this
      */
     public function fit($width, $height)
     {
-        $this->makeInterventionImage()
-            ->fit($width, $height)
-            ->save();
+        $this->toggleModified();
+
+        $this->getInterventionImage()->fit($width, $height);
 
         return $this;
     }
@@ -141,14 +228,13 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * @param int      $height
      * @param int|null $x
      * @param int|null $y
-     *
      * @return $this
      */
     public function crop($width, $height, $x = null, $y = null)
     {
-        $this->makeInterventionImage()
-            ->crop($width, $height, $x, $y)
-            ->save();
+        $this->toggleModified();
+
+        $this->getInterventionImage()->crop($width, $height, $x, $y);
 
         return $this;
     }
@@ -158,14 +244,13 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      *
      * @param mixed    $format
      * @param int|null $quality
-     *
      * @return $this
      */
     public function encode($format, $quality = null)
     {
-        $this->makeInterventionImage()
-            ->encode($format, $quality)
-            ->save();
+        $this->toggleModified();
+
+        $this->getInterventionImage()->encode($format, $quality);
 
         return $this;
     }
@@ -174,20 +259,19 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Scale the uploaded image size using given percentage.
      *
      * @param int|float $percentage
-     *
      * @return $this
      */
     public function scale($percentage)
     {
         $this->validatePercentageValue($percentage);
 
+        $this->toggleModified();
+
         $percentage = floatval($percentage);
         $width = $this->width() / 100 * $percentage;
         $height = $this->height() / 100 * $percentage;
 
-        $this->makeInterventionImage()
-            ->resize($width, $height)
-            ->save();
+        $this->getInterventionImage()->resize($width, $height);
 
         return $this;
     }
@@ -196,10 +280,9 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Validate percentage value.
      *
      * @param int|float $percentage
+     * @return void
      *
      * @throws \LogicException
-     *
-     * @return void
      */
     private function validatePercentageValue($percentage)
     {

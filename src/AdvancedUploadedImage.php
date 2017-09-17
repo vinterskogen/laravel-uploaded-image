@@ -33,16 +33,13 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
     }
 
     /**
-     * Save the applied changed to (real) temporary file and return
-     * UploadedImage instance for simple editing.
+     * Return UploadedImage instance for simple editing.
      *
      * @return \Vinterskogen\UploadedImage\UploadedImage
      */
     public function simpleEditing()
     {
-        $this->save();
-
-        return $this->uploadedImage;
+        return $this->uploadedImage->setInterventionImage($this);
     }
 
     /**
@@ -72,7 +69,6 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      *
      * @param string $method
      * @param array  $arguments
-     *
      * @return mixed
      */
     public function __call($method, $arguments)
@@ -115,7 +111,6 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * @see \Intervention\Image\AbstractDriver::getCommandClassName()
      *
      * @param Exception $exception
-     *
      * @return bool
      */
     private function isExceptedException(Exception $exception)
@@ -140,7 +135,6 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * class, that are related to placing the uploaded file to storage.
      *
      * @param string $method
-     *
      * @return bool
      */
     private function isStorageRelatedMethod($method)
@@ -168,12 +162,11 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Create advanced uploaded image with given uploaded image instance.
      *
      * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
-     *
      * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public static function createFromBase($uploadedImage)
     {
-        $interventionImage = static::makeInterventionImage($uploadedImage);
+        $interventionImage = $uploadedImage->getInterventionImage();
 
         $driver = $interventionImage->getDriver();
         $core = $interventionImage->getCore();
@@ -191,7 +184,6 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * file, as the uploaded image.
      *
      * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
-     *
      * @return \Intervention\Image\Image
      */
     private static function makeInterventionImage(UploadedImage $uploadedImage)
