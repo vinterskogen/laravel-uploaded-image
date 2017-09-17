@@ -84,4 +84,34 @@ interface UploadedImage
      * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public function advancedEditing();
+
+    /**
+     * Determine if intervention image is modified.
+     *
+     * @return bool
+     */
+    public function isModified();
+
+    /**
+     * Fire intervention image saving.
+     *
+     * @return $this
+     */
+    public function save();
+
+    /**
+     * Get InterventionImage instance, that points the same (real) temporary
+     * file, as this uploaded image.
+     *
+     * @return \Intervention\Image\Image
+     */
+    public function getInterventionImage();
+
+    /**
+     * Set Intervention Image instance.
+     *
+     * @param \Intervention\Image\Image
+     * @return $this
+     */
+    public function setInterventionImage(\Intervention\Image\Image $interventionImage);
 }

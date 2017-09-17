@@ -178,18 +178,4 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
 
         return $image;
     }
-
-    /**
-     * Make intervention image instance, that points the same (real) temporary
-     * file, as the uploaded image.
-     *
-     * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
-     * @return \Intervention\Image\Image
-     */
-    private static function makeInterventionImage(UploadedImage $uploadedImage)
-    {
-        $realPath = $uploadedImage->getRealPath();
-
-        return Image::make($realPath);
-    }
 }
