@@ -3,7 +3,6 @@
 namespace Vinterskogen\UploadedImage\Tests;
 
 use Mockery;
-use ReflectionClass;
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
