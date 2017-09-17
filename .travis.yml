@@ -22,7 +22,7 @@ cache:
 
 before_install:
   - phpenv config-rm xdebug.ini || true
-    - phpenv config-rm xdebug.ini
+  - travis_retry composer self-update
 
 install:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
