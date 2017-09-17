@@ -6,7 +6,7 @@ Install via Composer:
 
 `composer require vinterskogen/laravel-uploaded-image`
 
-After the installation, open your Laravel config file `config/app.php` and add
+After the installation, open your Laravel config file `config/app.php` and paste
 the following lines to the `providers` array to add service providers for
 this package to your app:
 
