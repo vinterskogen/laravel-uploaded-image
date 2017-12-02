@@ -33,14 +33,14 @@ For example your app has a controller that handles the users' avatars uploads
 and saves the avatar images to file storage (cloud, local 'public' storage,
 etc.).
 
-You want that avatars to fit to 250x250 pixels square and to be encoded
+You want that avatars to fit to 250x150 pixels square and to be encoded
 into PNG format before putting to storage.
 
 This can be done as easy as:
 
 ```php
 $request->image('avatar')
-        ->fit(250, 250)
+        ->fit(250, 150)
         ->encode('png')
         ->store('images/users/avatars', 'public');
 ```
@@ -70,6 +70,11 @@ instance:
 
 Resize and crop the uploaded image to fit given width and height, keeping aspect 
 ratio.
+
+`fitSquare(int $size)` 
+
+Resize and crop the uploaded image to fit a square with given side size, keeping
+aspect ratio.
 
 #### Crop
 
