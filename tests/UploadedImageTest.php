@@ -292,6 +292,39 @@ class UploadedImageTest extends TestCase
     }
 
     /**
+     * Test fit square method.
+     *
+     * @return void
+     */
+    public function testFitSquare()
+    {
+        $filename = 'image.jpg';
+        $width = 1000;
+        $height = 600;
+
+        $uploadedFile = UploadedFile::fake()->image($filename, $width, $height);
+        $uploadedImage = UploadedImage::createFromBase($uploadedFile);
+        $realPath = $uploadedImage->getRealPath();
+
+        Image::shouldReceive('make')->andReturnUsing(function ($path) {
+            return (new ImageManager())->make($path);
+        });
+
+        $actualResult = $uploadedImage->fitSquare($fitToSize = 200);
+
+        $this->assertSame($uploadedImage, $actualResult);
+        $this->assertAttributeEquals(true, 'isModified', $uploadedImage);
+
+        $actualInterventionImage = $this->readAttribute($uploadedImage, 'interventionImage');
+        $this->assertEquals(200, $actualInterventionImage->width());
+        $this->assertEquals(200, $actualInterventionImage->height());
+
+        list($actualRealFileWidth, $actualRealFileHeight) = getimagesize($realPath);
+        $this->assertEquals($width, $actualRealFileWidth);
+        $this->assertEquals($height, $actualRealFileHeight);
+    }
+
+    /**
      * Test crop method.
      *
      * @return void
