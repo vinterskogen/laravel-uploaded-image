@@ -126,7 +126,7 @@ Coming soon...
 
 The MIT license. See the accompanying `LICENSE.md` file.
 
---------------------------------------------------------------------------------
+## Credit
 
-Copyright © 2017 Vinter Skogen.
+Vinter Skogen, 2017
 
