@@ -30,10 +30,8 @@ package requirements and notes.
 ## Basic Usage
 
 For example your app has a controller that handles the users' avatars uploads 
-and saves the avatar images to file storage.
-
-For example you want that avatars to fit to 250x150 pixels and to be encoded
-into PNG format.
+and saves the avatar images to file storage. You want that avatars to fit to
+250x150 pixels and to be encoded into PNG format.
 
 This can be done as easy as:
 
