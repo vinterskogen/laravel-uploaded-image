@@ -49,11 +49,9 @@ instance of `Vinterskogen\UploadedImage\Uploadedimage` class.
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
 
-**Note**: 
-
-To be sure the file you are going to handle like an image is actually an image 
+> **Note**: to be sure the file you are going to handle like an image is actually an image 
 file, you have to apply [form request validation](https://laravel.com/docs/master/validation#form-request-validation)
-constraints on your controller's input (if you haven't done that yet, of course).
+constraints on your input (if you haven't done that yet, of course).
 
 ### Basic image handling methods
 
