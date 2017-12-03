@@ -30,11 +30,10 @@ package requirements and notes.
 ## Basic Usage
 
 For example your app has a controller that handles the users' avatars uploads 
-and saves the avatar images to file storage (cloud, local 'public' storage,
-etc.).
+and saves the avatar images to file storage.
 
-You want that avatars to fit to 250x150 pixels square and to be encoded
-into PNG format before putting to storage.
+For example you want that avatars to fit to 250x150 pixels and to be encoded
+into PNG format.
 
 This can be done as easy as:
 
@@ -45,10 +44,9 @@ $request->image('avatar')
         ->store('images/users/avatars', 'public');
 ```
 
-The `$request` object (and also the `Request` facade) now have an `image`
-method, that works just like the `file` method - retrieves an image file from the
-input and returns it as an instance of `Vinterskogen\UploadedImage\Uploadedimage`
-class. 
+The `$request` object now have an `image` method, that works just like the
+`file` method - retrieves an image file from the input and returns it as an
+instance of `Vinterskogen\UploadedImage\Uploadedimage` class. 
 
 This class extends the Laravel's `Illuminate\Http\UploadedFile` and implements
 a number of helpful image handling methods.
