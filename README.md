@@ -27,7 +27,7 @@ Install via Composer:
 Check the [Installation](docs/installation.md) page for full information about
 package requirements and notes.
 
-## Basic Usage
+## Usage
 
 For example your app has a controller that handles the users' avatars uploads 
 and saves the avatar images to file storage. You want that avatars to fit to
@@ -53,68 +53,47 @@ a number of helpful image handling methods.
 file, you have to apply [form request validation](https://laravel.com/docs/master/validation#form-request-validation)
 constraints on your input (if you haven't done that yet, of course).
 
-### Basic image handling methods
+## Image handling methods
 
 The list of public image handling methods that are available on `Uploadedimage` 
 instance:
 
-#### Fit
+### Fit
 
-`fit(int $width, int $height)` 
-
-Resize and crop the uploaded image to fit given width and height, keeping aspect 
+`fit(int $width, int $height)` &ndash; resize and crop the uploaded image to fit given width and height, keeping aspect 
 ratio.
 
-`fitSquare(int $size)` 
-
-Resize and crop the uploaded image to fit a square with given side size, keeping
+`fitSquare(int $size)` &ndash; resize and crop the uploaded image to fit a square with given side size, keeping
 aspect ratio.
 
-#### Crop
+### Crop
 
-`crop(int $width, int $height, int $x = null, int $y = null)`
+`crop(int $width, int $height, int $x = null, int $y = null)` &ndash; crop uploaded  image to given width and height.
 
-Crop uploaded  image to given width and height.
+### Encode
 
-#### Encode
+`encode(string $format, int $quality = null)` &ndash; encode uploaded image in given format and quality.
 
-`encode(string $format, int $quality = null)` 
+### Scale
 
-Encode uploaded image in given format and quality.
+`scale(int|float $percentage)` &ndash; scale the uploaded image size using given percentage.
 
-#### Scale
+### Resize to width
 
-`scale(int|float $percentage)`
+`resizeToWidth(int $width)` &ndash; resize the uploaded image to new width, constraining aspect ratio. 
 
-Scale the uploaded image size using given percentage.
+### Resize to height
 
-#### Resize to width
+`resizeToHeight(int $height)` &ndash; resize the uploaded image to new height,  constraining aspect ratio.
 
-`resizeToWidth(int $width)` 
+### Height
 
-Resize the uploaded image to new width, constraining aspect ratio. 
+`height()` &ndash; get height of uploaded image (in pixels).
 
-#### Resize to height
+### Width
 
-`resizeToHeight(int $height)`
+`width()` &ndash; get width of uploaded image (in pixels).
 
-Resize the uploaded image to new height,  constraining aspect ratio.
-
-#### Height
-
-`height()`
-
-Get height of uploaded image (in pixels).
-
-#### Width
-
-`width()`
-
-Get width of uploaded image (in pixels).
-
-## Advanced usage
-
-Coming soon...
 
 ## License
 
