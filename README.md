@@ -101,5 +101,5 @@ The MIT license. See the accompanying `LICENSE.md` file.
 
 ## Credit
 
-Vinter Skogen, 2017
+Vinter Skogen, 2017-2018
 
