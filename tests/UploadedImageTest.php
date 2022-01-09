@@ -2,13 +2,12 @@
 
 namespace Vinterskogen\UploadedImage\Tests;
 
-use Mockery;
 use Illuminate\Http\UploadedFile;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
-use Vinterskogen\UploadedImage\UploadedImage;
-use Intervention\Image\Image as InterventionImage;
+use Intervention\Image\ImageManager;
+use Mockery;
 use Vinterskogen\UploadedImage\AdvancedUploadedImage;
+use Vinterskogen\UploadedImage\UploadedImage;
 
 class UploadedImageTest extends TestCase
 {
@@ -428,6 +427,7 @@ class UploadedImageTest extends TestCase
      * Test store methods.
      *
      * @dataProvider storingMethodsDataProvider
+     *
      * @return void
      */
     public function testStore($storingMethodName)
@@ -468,6 +468,7 @@ class UploadedImageTest extends TestCase
      * Test store as methods.
      *
      * @dataProvider storingAsMethodsDataProvider
+     *
      * @return void
      */
     public function testStoreAs($storingAsMethodName)

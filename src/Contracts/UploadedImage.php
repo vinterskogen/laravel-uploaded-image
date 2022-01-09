@@ -111,6 +111,7 @@ interface UploadedImage
      * Set Intervention Image instance.
      *
      * @param \Intervention\Image\Image
+     *
      * @return $this
      */
     public function setInterventionImage(\Intervention\Image\Image $interventionImage);

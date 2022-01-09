@@ -3,10 +3,10 @@
 namespace Vinterskogen\UploadedImage;
 
 use Exception;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\AbstractDriver;
-use Intervention\Image\Image as InterventionImage;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\Image as InterventionImage;
 use Vinterskogen\UploadedImage\Contracts\AdvancedUploadedImage as AdvancedUploadedImageContract;
 
 class AdvancedUploadedImage extends InterventionImage implements AdvancedUploadedImageContract
@@ -22,8 +22,8 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Creates a new image instance.
      *
      * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
-     * @param \Intervention\Image\AbstractDriver  $driver
-     * @param mixed                               $core
+     * @param \Intervention\Image\AbstractDriver        $driver
+     * @param mixed                                     $core
      */
     public function __construct(UploadedImage $uploadedImage, AbstractDriver $driver = null, $core = null)
     {
@@ -69,6 +69,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      *
      * @param string $method
      * @param array  $arguments
+     *
      * @return mixed
      */
     public function __call($method, $arguments)
@@ -82,7 +83,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
             // If catched exception is not a 'command not supported' exception,
             // which is only one we are expecting here, we understand that
             // something unwanted took place, so we throw it further.
-            if (! $this->isExceptedException($exception)) {
+            if (!$this->isExceptedException($exception)) {
                 throw $exception;
             }
 
@@ -111,6 +112,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * @see \Intervention\Image\AbstractDriver::getCommandClassName()
      *
      * @param Exception $exception
+     *
      * @return bool
      */
     private function isExceptedException(Exception $exception)
@@ -135,6 +137,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * class, that are related to placing the uploaded file to storage.
      *
      * @param string $method
+     *
      * @return bool
      */
     private function isStorageRelatedMethod($method)
@@ -162,6 +165,7 @@ class AdvancedUploadedImage extends InterventionImage implements AdvancedUploade
      * Create advanced uploaded image with given uploaded image instance.
      *
      * @param \Vinterskogen\UploadedImage\UploadedImage $uploadedImage
+     *
      * @return \Vinterskogen\UploadedImage\AdvancedUploadedImage
      */
     public static function createFromBase($uploadedImage)

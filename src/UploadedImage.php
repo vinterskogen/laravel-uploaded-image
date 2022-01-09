@@ -9,8 +9,8 @@ use Vinterskogen\UploadedImage\Contracts\UploadedImage as UploadedImageContract;
 
 class UploadedImage extends UploadedFile implements UploadedImageContract
 {
-    use Concerns\HandlesImage,
-        Concerns\SavesBeforeStoring;
+    use Concerns\HandlesImage;
+    use Concerns\SavesBeforeStoring;
 
     /**
      * The advanced uploaded image instance.
@@ -95,7 +95,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     private function getAdvancedUploadedImage()
     {
-        if (! isset($this->advancedUplodedImage)) {
+        if (!isset($this->advancedUplodedImage)) {
             $this->advancedUplodedImage = $this->makeAdvancedUploadedImage();
         }
 
@@ -120,7 +120,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      */
     public function getInterventionImage()
     {
-        if (! isset($this->interventionImage)) {
+        if (!isset($this->interventionImage)) {
             $this->interventionImage = $this->makeInterventionImage();
         }
 
@@ -131,6 +131,7 @@ class UploadedImage extends UploadedFile implements UploadedImageContract
      * Set Intervention Image instance.
      *
      * @param \Intervention\Image\Image
+     *
      * @return $this
      */
     public function setInterventionImage(InterventionImage $interventionImage)
