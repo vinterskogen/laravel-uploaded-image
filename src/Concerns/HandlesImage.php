@@ -30,7 +30,8 @@ trait HandlesImage
      * Resize the uploaded image to new width (in pixels), constraining aspect
      * ratio.
      *
-     * @param  int  $width
+     * @param int $width
+     *
      * @return $this
      */
     public function resizeToWidth($width)
@@ -46,7 +47,8 @@ trait HandlesImage
      * Resize the uploaded image to new height (in pixels), constraining aspect
      * ratio.
      *
-     * @param  int  $height
+     * @param int $height
+     *
      * @return $this
      */
     public function resizeToHeight($height)
@@ -62,7 +64,8 @@ trait HandlesImage
      * Resize and crop the uploaded image to fit a square with given side size
      * (in pixels), keeping aspect ratio.
      *
-     * @param  int  $size
+     * @param int $size
+     *
      * @return $this
      */
     public function fitSquare($size)
@@ -78,8 +81,9 @@ trait HandlesImage
      * Resize and crop the uploaded image to fit a given dimensions (in pixels),
      * keeping aspect ratio.
      *
-     * @param  int  $width
-     * @param  int  $height
+     * @param int $width
+     * @param int $height
+     *
      * @return $this
      */
     public function fit($width, $height)
@@ -94,10 +98,11 @@ trait HandlesImage
     /**
      * Crop uploaded image to given width and height (in pixels).
      *
-     * @param  int       $width
-     * @param  int       $height
-     * @param  int|null  $x
-     * @param  int|null  $y
+     * @param int      $width
+     * @param int      $height
+     * @param int|null $x
+     * @param int|null $y
+     *
      * @return $this
      */
     public function crop($width, $height, $x = null, $y = null)
@@ -112,8 +117,9 @@ trait HandlesImage
     /**
      * Encode uploaded image to given format and quality.
      *
-     * @param  mixed     $format
-     * @param  int|null  $quality
+     * @param mixed    $format
+     * @param int|null $quality
+     *
      * @return $this
      */
     public function encode($format, $quality = null)
@@ -128,7 +134,8 @@ trait HandlesImage
     /**
      * Scale the uploaded image size using given percentage.
      *
-     * @param  int|float  $percentage
+     * @param int|float $percentage
+     *
      * @return $this
      */
     public function scale($percentage)
@@ -149,9 +156,11 @@ trait HandlesImage
     /**
      * Validate percentage value.
      *
-     * @param  int|float  $percentage
-     * @return void
+     * @param int|float $percentage
+     *
      * @throws \LogicException
+     *
+     * @return void
      */
     private function validatePercentageValue($percentage)
     {

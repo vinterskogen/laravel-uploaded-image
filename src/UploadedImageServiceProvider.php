@@ -42,7 +42,7 @@ class UploadedImageServiceProvider extends ServiceProvider
          * @return \Vinterskogen\UploadedImage\UploadedImage|null
          */
         return function ($filename) {
-            if (! Request::hasFile($filename)) {
+            if (!Request::hasFile($filename)) {
                 return;
             }
 
